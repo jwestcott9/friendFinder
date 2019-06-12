@@ -1,0 +1,27 @@
+#title{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#heading1{
+    text-align: center;
+    border-bottom: solid grey 1px;
+    padding: 0 10% 0 10%;
+}
+
+body{
+    font-family: 'Raleway', sans-serif;
+}
+
+.container{
+   
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 60px;
+}
+
+.submit-btn{
+    margin: 20px auto;
+    width: 30%;
+}
+
