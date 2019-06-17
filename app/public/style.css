@@ -29,3 +29,9 @@ body{
 #hide{
     display: none;
 }
+
+.img-sizer {
+    height: 10px;
+    opacity: .1;
+
+}
