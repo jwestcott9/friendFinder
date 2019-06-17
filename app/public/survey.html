@@ -160,31 +160,33 @@
         </select>
 
         <br>
-        <button type="button" class="btn btn-secondary submit-btn close" data-toggle="modal" data-target="#exampleModal"><strong>submit</strong>
+        <button type="button" class="btn btn-secondary submit-btn close" data-toggle="modal"
+            data-target="#exampleModal"><strong>submit</strong>
         </button>
     </div>
 
 
- 
-          
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+
                 </div>
                 <div class="modal-body" id="tableList">
-                  ...
+                    ...
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
+    </div>
 
 
 
@@ -193,53 +195,86 @@
 </html>
 
 <script>
-$(".submit-btn").on("click", function(event){
-    event.preventDefault();
+    $(".submit-btn").on("click", function (event) {
+        event.preventDefault();
 
-    var personalInfo = {
-        
-        q1: $("#q1").val(),
-        q2: $("#q2").val(),
-        q3: $("#q3").val(),
-        q4: $("#q4").val(),
-        q5: $("#q5").val(),
-        q6: $("#q6").val(),
-        q7: $("#q7").val(),
-        q8: $("#q8").val(),
-        q9: $("#q9").val(),
-        q10: $("#q10").val(),
+        var personalInfo = {
 
-    }
+            q1: $("#q1").val(),
+            q2: $("#q2").val(),
+            q3: $("#q3").val(),
+            q4: $("#q4").val(),
+            q5: $("#q5").val(),
+            q6: $("#q6").val(),
+            q7: $("#q7").val(),
+            q8: $("#q8").val(),
+            q9: $("#q9").val(),
+            q10: $("#q10").val(),
 
+        }
 
-    const values = Object.values(personalInfo)
-    var testArray = [];
+        var index;
+        var userAnswerValues = Object.values(personalInfo)
+        var testArray = [];
+        var element;
 
-    judgeFriends();
+        judgeFriendsAjax();
 
+        function judgeFriendsAjax() {
 
+            $.ajax({
+                    url: "/api/friend",
+                    method: "GET"
+                })
+                .then(function (tableData) {
 
-    function judgeFriends(){
-        $.ajax({url:"/api/friend", method:"GET"})
-            .then(function(tableData){
-                
-                console.log("------------------------------------------");
+                    console.log("------------------------------------------");
 
-                for(var i = 0; i<tableData.length; i++){
-                    var personObject = {};
-                    
-                  for(let j=0; j<tableData[i].scores.length; j++){
-                      
-                    personObject.push(tableData[i].scores[j]);
-                  }
-                  testArray.push(personObject);
-                  
- 
+                    for (var i = 0; i < tableData.length; i++) {
 
-            }
-            console.log(testArray);
-    })
+                        let scores = [];
+
+                        for (let j = 0; j < tableData[i].scores.length; j++) {
+                            let score = tableData[i].scores[j] - userAnswerValues[j];
+                            scores.push(Math.abs(score));
+
+                        }
 
 
-}});
-    </script>
+                        testArray.push(scores.reduce(addingArray));
+                        console.log(scores.reduce(addingArray))
+                        console.log(testArray);
+
+
+
+                    }
+
+                    function findTheBestFriend() {
+                        console.log("I am working")
+                        var element = 50;
+                        for (var i = 0; i < testArray.length; i++) {
+                            if (testArray[i] < element) {
+                                element = testArray[i];
+                                index = i;
+                            }
+                        }
+                        console.log(tableData[index]);
+                    }
+                    findTheBestFriend();
+
+                })
+
+
+
+
+        }
+
+        function addingArray(total, num) {
+            return total + num;
+        }
+
+
+
+
+    });
+</script>
