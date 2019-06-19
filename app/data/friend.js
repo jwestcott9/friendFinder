@@ -5,7 +5,7 @@
 // But you could have it be an empty array as well.
 // ===============================================================================
 
-var tableArray = [{
+var friends = [{
     "name": "Ahmed",
     "photo": "https://www.anl.gov/sites/www/files/styles/profile_teaser_square_350px/public/professional%20_pic.jpg?itok=YEpW7bW0",
     "scores": [
@@ -41,4 +41,4 @@ var tableArray = [{
 ];
 
 // Note how we export the array. This makes it accessible to other files using require.
-module.exports = tableArray;
+module.exports = friends;

@@ -212,12 +212,21 @@
             q10: $("#q10").val(),
 
         }
+        var inputData = {
+            name: $("#name").val(),
+            photo: $("#photo").val(),
+            scores: userAnswerValues
+        }
+        
 
         var index;
-        var userAnswerValues = Object.values(personalInfo)
+        var userAnswerValues = Object.values(personalInfo);
+        console.log(userAnswerValues);
         var testArray = [];
         var element;
         var bestFriend;
+
+
 
         judgeFriendsAjax();
 
@@ -265,15 +274,21 @@
                        $("#friendPicture").addClass("img-sizer")
                        console.log(answer.name);
                        console.log(answer.photo);
-                       console.log(answer.score);
+                       console.log(answer.scores);
                     }
                     findTheBestFriend();
-                    
 
+                    console.log(inputData);
 
+                    $.post(
+                         "/api/friend", inputData, function(data){
+                            console.log("success!!"); 
+                            console.log(JSON.stringify(data))
+                        
+                    })
 
-
-                    // the end of the .then is here all things requiring the database are put before this point.
+                   
+                   // the end of the .then is here all things requiring the database are put before this point.
                 })
 
 
