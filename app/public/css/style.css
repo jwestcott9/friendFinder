@@ -30,8 +30,20 @@ body{
     display: none;
 }
 
-.img-sizer {
-    height: 10px;
-    opacity: .1;
+.modal-body{
+    height: 400px;
+    width: 300px;
+    margin: 0 auto;
+}
+#friendPicture {
+    align-content: center;
+    max-height: 100%;
+    max-width: 100%;
+}
+.modal-header{
+    margin: 0 auto;
+}
 
+.hide {
+    display: none;
 }

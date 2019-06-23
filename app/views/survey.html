@@ -59,11 +59,11 @@
             <option>4</option>
             <option>5 (strongly agree)</option>
         </select>
-
+        <div class="hide">
         <h3><strong>Question 2</strong></h3>
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
 
-        <select id="q2">
+        <select id="q2" class="hide">
             <option>Select an option</option>
             <option>1 (strongly disagree)</option>
             <option>2</option>
@@ -71,10 +71,12 @@
             <option>4</option>
             <option>5 (strongly agree)</option>
         </select>
+    </div>
+    <div class="hide">
         <h3><strong>Question 3</strong></h3>
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
 
-        <select id="q3">
+        <select id="q3" >
             <option>Select an option</option>
             <option>1 (strongly disagree)</option>
             <option>2</option>
@@ -82,6 +84,8 @@
             <option>4</option>
             <option>5 (strongly agree)</option>
         </select>
+    </div>
+    <div class="hide">
         <h3><strong>Question 4</strong></h3>
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
 
@@ -93,6 +97,9 @@
             <option>4</option>
             <option>5 (strongly agree)</option>
         </select>
+
+    </div>
+    <div class="hide">
         <h3><strong>Question 5</strong></h3>
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
 
@@ -104,6 +111,8 @@
             <option>4</option>
             <option>5 (strongly agree)</option>
         </select>
+    </div>
+    <div class="hide">
         <h3><strong>Question 6</strong></h3>
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
 
@@ -115,6 +124,8 @@
             <option>4</option>
             <option>5 (strongly agree)</option>
         </select>
+    </div>
+    <div class="hide">
         <h3><strong>Question 7</strong></h3>
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
 
@@ -126,6 +137,8 @@
             <option>4</option>
             <option>5 (strongly agree)</option>
         </select>
+    </div>
+    <div class="hide">
         <h3><strong>Question 8</strong></h3>
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
 
@@ -137,6 +150,8 @@
             <option>4</option>
             <option>5 (strongly agree)</option>
         </select>
+    </div>
+    <div class="hide">
         <h3><strong>Question 9</strong></h3>
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
 
@@ -148,6 +163,8 @@
             <option>4</option>
             <option>5 (strongly agree)</option>
         </select>
+    </div>
+    <div class="hide">
         <h3><strong>Question 10</strong></h3>
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
 
@@ -159,7 +176,7 @@
             <option>4</option>
             <option>5 (strongly agree)</option>
         </select>
-
+    </div>
         <br>
         <button type="button" class="btn btn-secondary submit-btn close" data-toggle="modal"
             data-target="#exampleModal"><strong>submit</strong>
@@ -175,7 +192,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Please fill out the whole survey to get your next Fighter</h5>
 
                 </div>
                 <div class="modal-body" id="tableList">
@@ -196,6 +213,7 @@
 </html>
 
 <script>
+    
     $(".submit-btn").on("click", function (event) {
         event.preventDefault();
 
@@ -293,16 +311,18 @@
                         clearIt();
                         function clearIt(){
                             console.log("iVE BEEN HIT");
-                        $("#q1").val("");
-                        $("#q2").val("");
-                        $("#q3").val("");
-                        $("#q4").val("");
-                        $("#q5").val("");
-                        $("#q6").val("");
-                        $("#q7").val("");  
-                        $("#q8").val("");                     
-                        $("#q9").val("");
-                        $("#q10").val("");
+                        $("#name").val("");
+                        $("#photo").val("");
+                        $("#q1").val("Select an option");
+                        $("#q2").val("Select an option");
+                        $("#q3").val("Select an option");
+                        $("#q4").val("Select an option");
+                        $("#q5").val("Select an option");
+                        $("#q6").val("Select an option");
+                        $("#q7").val("Select an option");  
+                        $("#q8").val("Select an option");                     
+                        $("#q9").val("Select an option");
+                        $("#q10").val("Select an option");
                         }
                         // the end of the .then is here all things requiring the database are put before this point.
                 })
