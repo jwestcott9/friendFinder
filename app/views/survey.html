@@ -21,7 +21,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+    <title>Fight Club Finder</title>
 </head>
 
 <body>
@@ -182,7 +183,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                   
                 </div>
             </div>
         </div>
@@ -200,44 +201,44 @@
 
         var personalInfo = {
 
-            q1: $("#q1").val()[0],
-            q2: $("#q2").val()[0],
-            q3: $("#q3").val(),
-            q4: $("#q4").val(),
-            q5: $("#q5").val(),
-            q6: $("#q6").val(),
-            q7: $("#q7").val(),
-            q8: $("#q8").val(),
-            q9: $("#q9").val(),
-            q10: $("#q10").val(),
+            q1: $("#q1").val().charAt(0),
+            q2: $("#q2").val().charAt(0),
+            q3: $("#q3").val().charAt(0),
+            q4: $("#q4").val().charAt(0),
+            q5: $("#q5").val().charAt(0),
+            q6: $("#q6").val().charAt(0),
+            q7: $("#q7").val().charAt(0),
+            q8: $("#q8").val().charAt(0),
+            q9: $("#q9").val().charAt(0),
+            q10: $("#q10").val().charAt(0),
 
         }
+      
+
+
+        var index;
+        var userAnswerValues = Object.values(personalInfo);
+        var testArray = [];
+        var element;
+        var bestFriend;
         var inputData = {
             name: $("#name").val(),
             photo: $("#photo").val(),
             scores: userAnswerValues
         }
-        
-
-        var index;
-        var userAnswerValues = Object.values(personalInfo);
-        console.log(userAnswerValues);
-        var testArray = [];
-        var element;
-        var bestFriend;
-
 
 
         judgeFriendsAjax();
 
         function judgeFriendsAjax() {
-
+            console.log(inputData.scores);
+            console.log(userAnswerValues);
             $.ajax({
-                    url: "/api/friend",
+                    url: "/api/friend", 
                     method: "GET"
                 })
                 .then(function (tableData) {
-
+                    console.log(tableData);
                     console.log("------------------------------------------");
 
                     for (var i = 0; i < tableData.length; i++) {
@@ -245,6 +246,7 @@
                         let scores = [];
 
                         for (let j = 0; j < tableData[i].scores.length; j++) {
+                            
                             let score = tableData[i].scores[j] - userAnswerValues[j];
                             scores.push(Math.abs(score));
 
@@ -268,27 +270,41 @@
                                 index = i;
                             }
                         }
-                       var answer = tableData[index];
-                       $(".modal-header").text(answer.name)
-                       $("#friendPicture").attr("src", answer.photo)
-                       $("#friendPicture").addClass("img-sizer")
-                       console.log(answer.name);
-                       console.log(answer.photo);
-                       console.log(answer.scores);
+                        var answer = tableData[index];
+                        $(".modal-header").text(answer.name)
+                        $("#friendPicture").attr("src", answer.photo)
+                        $("#friendPicture").addClass("img-sizer")
+                        console.log(answer.name);
+                        console.log(answer.photo);
+                        console.log(answer.scores);
                     }
                     findTheBestFriend();
 
                     console.log(inputData);
 
                     $.post(
-                         "/api/friend", inputData, function(data){
-                            console.log("success!!"); 
+                        "/api/friend", inputData,
+                        function (data) {
+                            
+                            console.log("success!!");
                             console.log(JSON.stringify(data))
-                        
-                    })
 
-                   
-                   // the end of the .then is here all things requiring the database are put before this point.
+                        })
+                        clearIt();
+                        function clearIt(){
+                            console.log("iVE BEEN HIT");
+                        $("#q1").val("");
+                        $("#q2").val("");
+                        $("#q3").val("");
+                        $("#q4").val("");
+                        $("#q5").val("");
+                        $("#q6").val("");
+                        $("#q7").val("");  
+                        $("#q8").val("");                     
+                        $("#q9").val("");
+                        $("#q10").val("");
+                        }
+                        // the end of the .then is here all things requiring the database are put before this point.
                 })
 
 
