@@ -10,7 +10,7 @@
 }
 
 body{
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Rubik Mono One', sans-serif;
 }
 
 .container{
@@ -46,4 +46,13 @@ body{
 
 .hide {
     display: none;
+}
+
+.fadein {
+    -webkit-animation: textFade2 1s;
+}
+
+@keyframes textFade2 {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
